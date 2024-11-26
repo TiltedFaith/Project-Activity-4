@@ -21,15 +21,6 @@
       
       <button type="submit">Add Item</button>
     </form>
-
-    <!-- Checkout section -->
-    <div id="checkout-section">
-      <label for="amount-paid">Amount Paid:</label>
-      <input type="number" id="amount-paid" placeholder="Enter amount paid" step="0.01" required>
-      
-      <button id="checkout-button">Checkout</button>
-      <p id="change-message">Change: $0.00</p>
-    </div>
     
     <table id="receipt-table">
       <thead>
@@ -48,8 +39,16 @@
         </tr>
       </tfoot>
     </table>
+     <!-- Checkout section -->
+     <div id="checkout-section">
+      <br>
+      <label for="amount-paid">Amount Paid:</label>
+      <input type="number" id="amount-paid" placeholder="Enter amount paid" step="0.01" required>
+      
+      <button id="checkout-button">Checkout</button>
+      <p id="change-message">Change: $0.00</p>
+    </div>
   </div>
-
   <script src="script.js"></script>
 </body>
 </html>
