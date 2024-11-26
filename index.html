@@ -4,43 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Receipt Calculator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    h1 {
-      text-align: center;
-    }
-    label, input, button {
-      display: block;
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th, td {
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: #f4f4f4;
-    }
-    .total {
-      font-weight: bold;
-      text-align: right;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
@@ -77,40 +41,6 @@
     </table>
   </div>
 
-  <script>
-    const form = document.getElementById('item-form');
-    const tableBody = document.querySelector('#receipt-table tbody');
-    const grandTotalElement = document.getElementById('grand-total');
-    let grandTotal = 0;
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Get input values
-      const itemName = document.getElementById('item-name').value;
-      const itemPrice = parseFloat(document.getElementById('item-price').value);
-      const itemQuantity = parseInt(document.getElementById('item-quantity').value);
-
-      // Calculate total for this item
-      const itemTotal = itemPrice * itemQuantity;
-
-      // Update grand total
-      grandTotal += itemTotal;
-      grandTotalElement.textContent = `$${grandTotal.toFixed(2)}`;
-
-      // Add a new row to the table
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${itemName}</td>
-        <td>$${itemPrice.toFixed(2)}</td>
-        <td>${itemQuantity}</td>
-        <td>$${itemTotal.toFixed(2)}</td>
-      `;
-      tableBody.appendChild(row);
-
-      // Clear form inputs
-      form.reset();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
