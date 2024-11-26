@@ -1,12 +1,20 @@
 // eslint.config.js
+import { ESLint } from 'eslint';
+
+const eslint = new ESLint();
+
 export default [
-    {
-      files: ['**/*.js'],
-      extends: ['eslint:recommended'],  // Use ESLint's built-in recommended rules
-      rules: {
-        'no-console': 'warn',  // Custom rules
-        'no-unused-vars': 'warn',
-      },
+  {
+    files: ['**/*.js'],
+    // Directly include the recommended config objects here
+    parserOptions: {
+      ecmaVersion: 'latest', // Use the latest ECMAScript version
+      sourceType: 'module',  // Ensure support for ES modules
     },
-  ];
-  
+    plugins: ['eslint-plugin'],
+    rules: {
+      'no-console': 'warn', // Custom rules
+      'no-unused-vars': 'warn',
+    },
+  },
+];
