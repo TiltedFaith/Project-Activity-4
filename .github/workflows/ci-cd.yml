@@ -3,58 +3,46 @@ name: CI/CD Workflow
 on:
   push:
     branches:
-      - main
+      - main  # Run on pushes to the main branch
   pull_request:
     branches:
-      - main
+      - main  # Run on pull requests targeting the main branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+    # Step 2: Set up Node.js environment (for future enhancements/testing)
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          npm install htmlhint stylelint stylelint-config-standard eslint --save-dev
+    # Step 3: Install dependencies (if needed)
+    - name: Install dependencies
+      run: npm install
 
-      # Step 4: Set permissions for node binaries
-      - name: Set permissions for node binaries
-        run: chmod -R +x ./node_modules/.bin
+    # Step 4: Lint or validate code
+    - name: Lint HTML/CSS/JavaScript
+      run: |
+        npx htmlhint '**/*.html'
+        npx stylelint '**/*.css'
+        npx eslint '**/*.js'
 
-      # Step 5: Run HTMLHint
-      - name: Lint HTML files with HTMLHint
-        run: npx htmlhint '**/*.html'
-
-      # Step 6: Run Stylelint
-      - name: Lint CSS files with Stylelint
-        run: npx stylelint '**/*.css'
-
-      # Step 7: Run ESLint
-      - name: Lint JS files with ESLint
-        run: npx eslint '**/*.js'
-
+    # Step 5: Deploy to GitHub Pages (optional)
   deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      # Step 1: Checkout the code
+      if: github.ref == 'refs/heads/main'
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      # Step 2: Deploy to GitHub Pages
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
