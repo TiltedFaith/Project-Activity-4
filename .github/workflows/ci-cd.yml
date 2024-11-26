@@ -27,6 +27,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Fix permissions
+      run: chmod +x node_modules/.bin/htmlhint
+
     # Step 4: Lint or validate code
     - name: Lint HTML/CSS/JavaScript
       run: |
