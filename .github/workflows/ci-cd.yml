@@ -26,23 +26,21 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: |
-          npm install htmlhint --save-dev
-          chmod +x ./node_modules/.bin/htmlhint
-
-      - name: Install dependencies
-        run: |
           npm install htmlhint stylelint stylelint-config-standard eslint --save-dev
 
+      # Step 4: Set permissions for executables
+      - name: Set permissions for node binaries
+        run: chmod -R +x ./node_modules/.bin
 
-      # Step 4: Run HTMLHint
+      # Step 5: Run HTMLHint
       - name: Lint HTML files with HTMLHint
         run: npx htmlhint '**/*.html'
 
-      # Step 5: Run Stylelint
+      # Step 6: Run Stylelint
       - name: Lint CSS files with Stylelint
         run: npx stylelint '**/*.css'
 
-      # Step 6: Run ESLint
+      # Step 7: Run ESLint
       - name: Lint JS files with ESLint
         run: npx eslint '**/*.js'
 
