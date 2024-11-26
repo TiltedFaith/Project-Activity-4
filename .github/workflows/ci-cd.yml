@@ -23,15 +23,13 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          npm install htmlhint --save-dev
-          chmod +x ./node_modules/.bin/htmlhint
+      # Step 3: Install htmlhint globally
+      - name: Install htmlhint globally
+        run: npm install -g htmlhint stylelint eslint
 
       # Step 4: Run HTMLHint
       - name: Lint HTML files with HTMLHint
-        run: npx htmlhint '**/*.html'
+        run: htmlhint '**/*.html'
 
       # Step 5: Run Stylelint
       - name: Lint CSS files with Stylelint
