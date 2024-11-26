@@ -1,8 +1,7 @@
 // eslint.config.js
-import { defineConfig } from 'eslint';
+const eslintRecommended = require('eslint/conf/eslint-recommended');
 
-// Define ESLint config
-export default defineConfig({
+module.exports = {
   overrides: [
     {
       files: ['**/*.js'],
@@ -13,4 +12,4 @@ export default defineConfig({
       },
     },
   ],
-});
+};
