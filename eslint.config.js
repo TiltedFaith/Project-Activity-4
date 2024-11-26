@@ -9,9 +9,12 @@ export default [
         ecmaVersion: 'latest', // Use the latest ECMAScript version
         sourceType: 'module',  // Ensure support for ES modules
       },
+      globals: {
+        structuredClone: 'readonly', // Add structuredClone to global variables
+      },
     },
     rules: {
-      'no-console': 'warn', // Custom rules
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-unused-vars': 'warn',
     },
   },
