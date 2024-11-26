@@ -1,6 +1,10 @@
 const form = document.getElementById('item-form');
 const tableBody = document.querySelector('#receipt-table tbody');
 const grandTotalElement = document.getElementById('grand-total');
+const amountPaidInput = document.getElementById('amount-paid');
+const checkoutButton = document.getElementById('checkout-button');
+const changeMessage = document.getElementById('change-message');
+
 let grandTotal = 0;
 
 form.addEventListener('submit', function(e) {
@@ -30,4 +34,16 @@ form.addEventListener('submit', function(e) {
 
   // Clear form inputs
   form.reset();
+});
+
+checkoutButton.addEventListener('click', function() {
+  const amountPaid = parseFloat(amountPaidInput.value);
+
+  // Check if the amount paid is sufficient
+  if (amountPaid < grandTotal) {
+    alert('Insufficient amount paid!');
+  } else {
+    const change = amountPaid - grandTotal;
+    changeMessage.textContent = `Change: $${change.toFixed(2)}`;
+  }
 });
