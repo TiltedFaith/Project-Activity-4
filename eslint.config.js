@@ -6,16 +6,13 @@ export default [
     files: ['**/*.js'],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: 'latest', // Use the latest ECMAScript version
+        ecmaVersion: 'latest', // Ensure support for latest ECMAScript features
         sourceType: 'module',  // Ensure support for ES modules
-      },
-      globals: {
-        structuredClone: 'readonly', // Add structuredClone to global variables
       },
     },
     rules: {
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
-      'no-unused-vars': 'warn',
+      'no-console': 'warn', // No need for structuredClone here
+      'no-unused-vars': 'warn', // Custom rule
     },
   },
 ];
