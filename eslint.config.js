@@ -1,13 +1,16 @@
 // eslint.config.js
-import eslintRecommended from 'eslint/conf/eslint-recommended.js';
+import { defineConfig } from 'eslint';
 
-export default [
-  eslintRecommended,  // Use the ESLint recommended config
-  {
-    files: ['**/*.js'],
-    rules: {
-      'no-console': 'warn',
-      'no-unused-vars': 'warn',
+// Define ESLint config
+export default defineConfig({
+  overrides: [
+    {
+      files: ['**/*.js'],
+      extends: ['eslint:recommended'], // Use the recommended ESLint config
+      rules: {
+        'no-console': 'warn', // Custom rules
+        'no-unused-vars': 'warn',
+      },
     },
-  },
-];
+  ],
+});
