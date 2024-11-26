@@ -1,7 +1,7 @@
 // eslint.config.js
-const eslintRecommended = require('eslint/conf/eslint-recommended.js');
+import eslintRecommended from 'eslint/conf/eslint-recommended.js';
 
-module.exports = [
+export default [
   eslintRecommended,  // Use the ESLint recommended config
   {
     files: ['**/*.js'],
