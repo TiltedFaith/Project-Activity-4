@@ -1,12 +1,12 @@
-name: CI/CD For Receipt File
+name: CI/CD Workflow
 
 on:
   push:
     branches:
-      - main  # Run on pushes to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Run on pull requests targeting the main branch
+      - main
 
 jobs:
   build:
@@ -23,16 +23,22 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install dependencies (if needed)
+      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
-
-      # Step 4: Lint or validate code
-      - name: Lint HTML/CSS/JavaScript
         run: |
-          npx htmlhint '**/*.html'
-          npx stylelint '**/*.css'
-          npx eslint '**/*.js'
+          npm install htmlhint stylelint stylelint-config-standard eslint --save-dev
+
+      # Step 4: Run HTMLHint
+      - name: Lint HTML files with HTMLHint
+        run: npx htmlhint '**/*.html'
+
+      # Step 5: Run Stylelint
+      - name: Lint CSS files with Stylelint
+        run: npx stylelint '**/*.css'
+
+      # Step 6: Run ESLint
+      - name: Lint JS files with ESLint
+        run: npx eslint '**/*.js'
 
   deploy:
     runs-on: ubuntu-latest
